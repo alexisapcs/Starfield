@@ -23,20 +23,19 @@ void draw()
   for (int i = 0; i < stars.length; i++) {
       stars[i].move();
       stars[i].show();
-      /*
-      if (stars[i].myY > height || stars[i].myY < 0 ) {
-        if (stars[i].myX > width || stars[i].myX < 0) {
-          stars[i].myY = height/2;
-          stars[i].myX = width/2;
+      
+      if (stars[i].getY() > height || stars[i].getY() < 0 ) {
+        if (stars[i].getX() > width || stars[i].getX() < 0) {
+          stars[i].setVars(width/2, height/2);
         }
       }
-      */
+      
   }
 }
 class NormalParticle implements Particle
 {
   int myColor;
-  float myX, myY;
+  public float myX, myY;
   double myAngle, mySpeed;
   
   NormalParticle(){
@@ -56,16 +55,32 @@ class NormalParticle implements Particle
     //System.out.println(myColor);
     ellipse(myX, myY, 20, 20);
   }
+  
+  public float getX() {
+    return myX;
+  }
+  
+  public float getY() {
+    return myY;
+  }
+  
+  public void setVars(int x, int y) {
+    myX = (float)x;
+    myY = (float)y;
+  }
 }
 interface Particle
 {
   public void show();
   public void move();
+  public float getX();
+  public float getY();
+  public void setVars(int x, int y);
 }
 class OddballParticle implements Particle
 {
   int myColor;
-  float myX, myY;
+  public float myX, myY;
   double myAngle, mySpeed;
   
   OddballParticle() {
@@ -106,6 +121,19 @@ class OddballParticle implements Particle
   public void show() {
     fill(myColor);
     ellipse(myX, myY, 50, 50);
+  }
+  
+  public float getX() {
+    return myX;
+  }
+  
+  public float getY() {
+    return myY;
+  }
+  
+  public void setVars(int x, int y) {
+    myX = (float)x;
+    myY = (float)y;
   }
 }
 class JumboParticle //uses inheritance
