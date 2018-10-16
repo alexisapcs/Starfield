@@ -3,9 +3,9 @@ int colors;
 
 void setup()
 {
-  size(400, 400);
+  size(500, 500);
   frameRate(100);
-  stars = new Particle[1000];
+  stars = new Particle[500];
   for (int i = 0; i < stars.length; i++) {
     if (i == 0) {
       stars[0] = new OddballParticle();
@@ -198,4 +198,3 @@ class JumboParticle implements Particle {
     myX = (float)x;
     myY = (float)y;
   }
-}
