@@ -4,13 +4,14 @@ int colors;
 void setup()
 {
   size(400, 400);
-  noStroke();
   frameRate(100);
   stars = new Particle[1000];
   for (int i = 0; i < stars.length; i++) {
     if (i == 0) {
       stars[0] = new OddballParticle();
     } else if(i % 20 == 0){
+      stars[i] = new JumboParticle('i');
+    } else if(i % 50 == 0){
       stars[i] = new JumboParticle();
     } else {
       stars[i] = new NormalParticle();
@@ -19,21 +20,21 @@ void setup()
 }
 void draw()
 {
-  frameRate((int)(Math.random()*40)+20);
-  //colors = color(196, 253, 255, 10);
+  //frameRate((int)(Math.random()*40)+20);
   fill(color(0, 0, 0, 10));
   rect(0, 0, width, height);
   for (int i = 0; i < stars.length; i++) {
       stars[i].move();
       stars[i].show();
-      
       if (stars[i].getY() > height || stars[i].getY() < 0 ) {
         if (stars[i].getX() > width || stars[i].getX() < 0) {
           stars[i].setVars(width/2, height/2);
         }
       }
-      
   }
+}
+void mousePressed() {
+  setup();
 }
 
 interface Particle {
@@ -64,7 +65,7 @@ class NormalParticle implements Particle {
 
   public void show() {
     fill(myColor);
-    //System.out.println(myColor);
+    stroke(myColor);
     ellipse(myX, myY, 20, 20);
   }
   
@@ -135,6 +136,7 @@ class OddballParticle implements Particle {
   
   public void show() {
     fill(myColor);
+    noStroke();
     ellipse(myX, myY, 50, 50);
   }
   
@@ -152,7 +154,7 @@ class OddballParticle implements Particle {
   }
 }
 class JumboParticle implements Particle {
-  int myColor;
+  int myColor, myRC1;
   public float myX, myY;
   double myAngle, mySpeed;
   
@@ -160,9 +162,18 @@ class JumboParticle implements Particle {
     myX = width/2;
     myY = height/2;
     myAngle = (Math.random()*360);
-    myColor = color((int)(Math.random()*50)+170, 253, 255, 80);
+    myColor = color((int)(Math.random()*50)+200, 253, 255, 80);
     mySpeed = (Math.random()*2);
-}
+  }
+  
+  JumboParticle(char i){
+    myX = width/2;
+    myY = height/2;
+    myRC1 = (int)(Math.random()*30)+150;
+    myAngle = (Math.random()*360);
+    myColor = color(myRC1, myRC1-20, 255, 80);
+    mySpeed = (Math.random()*2);
+  }
 
   public void move() {
     myX += Math.cos(myAngle) * mySpeed;
@@ -171,7 +182,7 @@ class JumboParticle implements Particle {
 
   public void show() {
     fill(myColor);
-    //System.out.println(myColor);
+    stroke(myColor);
     ellipse(myX, myY, 30, 30);
   }
   
