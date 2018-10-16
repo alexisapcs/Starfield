@@ -5,6 +5,7 @@ void setup()
 {
   size(400, 400);
   noStroke();
+  frameRate(100);
   stars = new Particle[1000];
   for (int i = 0; i < stars.length; i++) {
     if (i == 0) {
@@ -53,7 +54,7 @@ class NormalParticle implements Particle {
     myY = height/2;
     myAngle = (Math.random()*360);
     myColor = color((int)(Math.random()*30)+225, 196, 255, 80);
-    mySpeed = (Math.random()*2);
+    mySpeed = (Math.random()*2)+0.1;
 }
 
   public void move() {
@@ -97,13 +98,13 @@ class OddballParticle implements Particle {
   public void move() {
     int xStep;
     int yStep;
-    if (myX < 200) {
+    if (myX < width/2) {
       xStep = (int)(Math.random()*3);
     } else 
     {
       xStep = (int)(Math.random()*3 - 3);
     }
-    if (myY < 400) {
+    if (myY < height/2) {
       yStep = (int)(Math.random()*3);
     } else 
     {
@@ -112,19 +113,23 @@ class OddballParticle implements Particle {
     myX += xStep;
     myY += yStep;
     
-    if (myX < 0 || myX > width || myY < 0 || myY > height)
+    if (myX < 0 || myX > width || myY < 0 || myY > height || (myX < width/2 && myY > height/2))
       startSide();
   }
   void startSide() {
     mySide = (int)(Math.random()*4)+1;
     if (mySide == 1) {
+      myX = 0;
       myY = 0;
     } else if (mySide == 2) {
       myX = 0;
+      myY = height;
     } else if (mySide == 3) {
+      myX = width;
       myY = height;
     } else if (mySide == 4) {
       myX = width;
+      myY = 0;
     }
   }
   
