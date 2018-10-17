@@ -56,7 +56,7 @@ class NormalParticle implements Particle {
     myX = width/2;
     myY = height/2;
     myAngle = (Math.random()*360);
-    myColor = color((int)(Math.random()*30)+225, 196, 255, 80);
+    myColor = color((int)(Math.random()*30)+225, 196, 255);
     mySpeed = (Math.random()*2)+0.1;
 }
 
@@ -66,8 +66,8 @@ class NormalParticle implements Particle {
   }
 
   public void show() {
-    fill(myColor);
-    stroke(myColor);
+    fill(myColor, 80);
+    stroke(myColor, 95);
     ellipse(myX, myY, 20, 20);
   }
   
@@ -164,8 +164,8 @@ class JumboParticle implements Particle {
     myX = width/2;
     myY = height/2;
     myAngle = (Math.random()*360);
-    myColor = color((int)(Math.random()*50)+200, 253, 255, 80);
-    mySpeed = (Math.random()*2);
+    myColor = color((int)(Math.random()*50)+200, 253, 255);
+    mySpeed = (Math.random()*2)+0.1;
   }
   
   JumboParticle(char i){
@@ -173,8 +173,8 @@ class JumboParticle implements Particle {
     myY = height/2;
     myRC1 = (int)(Math.random()*30)+150;
     myAngle = (Math.random()*360);
-    myColor = color(myRC1, myRC1-20, 255, 80);
-    mySpeed = (Math.random()*2);
+    myColor = color(myRC1, myRC1-20, 255);
+    mySpeed = (Math.random()*2)+0.1;
   }
 
   public void move() {
@@ -183,8 +183,8 @@ class JumboParticle implements Particle {
   }
 
   public void show() {
-    fill(myColor);
-    stroke(myColor);
+    fill(myColor, 80);
+    stroke(myColor, 95);
     ellipse(myX, myY, 30, 30);
   }
   
