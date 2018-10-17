@@ -4,6 +4,7 @@ int colors;
 void setup()
 {
   size(500, 500);
+  background(0);
   frameRate(100);
   stars = new Particle[500];
   for (int i = 0; i < stars.length; i++) {
@@ -22,6 +23,7 @@ void draw()
 {
   //frameRate((int)(Math.random()*40)+20);
   fill(color(0, 0, 0, 10));
+  noStroke();
   rect(0, 0, width, height);
   for (int i = 0; i < stars.length; i++) {
       stars[i].move();
