@@ -198,3 +198,4 @@ class JumboParticle implements Particle {
     myX = (float)x;
     myY = (float)y;
   }
+}
